@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.revolut.technicalchallenge.config.MainModule;
-import com.revolut.technicalchallenge.controller.AccountController;
+import com.revolut.technicalchallenge.account.controller.AccountController;
 
 import java.util.logging.Logger;
 
