@@ -1,11 +1,21 @@
-package com.revolut.technicalchallenge.domain;
+package com.revolut.technicalchallenge.account.domain;
+
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 import java.math.BigDecimal;
 
+@DatabaseTable(tableName = "accounts")
 public class Account {
+
+  @DatabaseField(generatedId = true)
   private int id;
+
+  @DatabaseField(canBeNull = false)
   private String owner;
-  private BigDecimal amount;
+
+  @DatabaseField(canBeNull = false)
+  private BigDecimal amount = BigDecimal.ZERO;
 
   public Account() {
   }
