@@ -6,6 +6,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.revolut.technicalchallenge.account.domain.Account;
 
+import javax.security.auth.login.AccountNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,9 +25,13 @@ public class AccountDAOImpl extends BaseDaoImpl<Account, Integer> implements Acc
   }
 
   @Override
-  public Account getAccount(int id) {
+  public Account getAccount(int id) throws AccountNotFoundException {
     try {
-      return super.queryForId(id);
+      Account account = super.queryForId(id);
+      if (account == null) {
+        throw new AccountNotFoundException(String.format("Account with ID %s not found", id));
+      }
+      return account;
     } catch (SQLException e) {
       throw new RuntimeException(e.getCause());
     }
