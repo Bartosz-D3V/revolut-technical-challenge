@@ -6,6 +6,7 @@ import com.revolut.technicalchallenge.account.domain.Account;
 import com.revolut.technicalchallenge.account.domain.TransferDetails;
 import com.revolut.technicalchallenge.account.exceptions.InsufficientAmountException;
 
+import javax.security.auth.login.AccountNotFoundException;
 import java.math.BigDecimal;
 import java.util.Collection;
 
@@ -23,7 +24,7 @@ public class AccountServiceImpl implements AccountService {
   }
 
   @Override
-  public Account getAccount(int id) {
+  public Account getAccount(int id) throws AccountNotFoundException {
     return accountDAO.getAccount(id);
   }
 
@@ -33,10 +34,10 @@ public class AccountServiceImpl implements AccountService {
   }
 
   @Override
-  public TransferDetails transfer(TransferDetails transferDetails) throws InsufficientAmountException {
+  public TransferDetails transfer(TransferDetails transferDetails) throws InsufficientAmountException, AccountNotFoundException {
     Account source = accountDAO.getAccount(transferDetails.getSourceAccountId());
-    validateAvailableFunds(source, transferDetails.getAmount());
     Account dest = accountDAO.getAccount(transferDetails.getDestAccountId());
+    validateAvailableFunds(source, transferDetails.getAmount());
     source.setAmount(source.getAmount().subtract(transferDetails.getAmount()));
     dest.setAmount(dest.getAmount().add(transferDetails.getAmount()));
     accountDAO.updateAccounts(source, dest);
