@@ -7,5 +7,9 @@ import java.util.Collection;
 public interface AccountDAO {
   Collection<Account> getAccounts();
 
+  Account getAccount(int id);
+
   Account createAccount(Account account);
+
+  void updateAccounts(Account... accounts);
 }
