@@ -1,0 +1,103 @@
+{
+  "info": {
+    "_postman_id": "f8aebed9-1ba4-490e-8c51-f112dec9aa3b",
+    "name": "Revolut-Challenge",
+    "description": "Postman API collection to test the Revolut programming challenge application.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get accounts",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "localhost:4567/accounts",
+          "host": [
+            "localhost"
+          ],
+          "port": "4567",
+          "path": [
+            "accounts"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create account",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"owner\": \"owner name\",\n\t\"amount\": 100\n}"
+        },
+        "url": {
+          "raw": "localhost:4567/accounts",
+          "host": [
+            "localhost"
+          ],
+          "port": "4567",
+          "path": [
+            "accounts"
+          ]
+        },
+        "description": "Create account by providing owner name and initial amount"
+      },
+      "response": []
+    },
+    {
+      "name": "Transfer money",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"sourceAccountId\": 1,\n\t\"destAccountId\": 2,\n\t\"amount\": 50\n}"
+        },
+        "url": {
+          "raw": "localhost:4567/accounts/transfer",
+          "host": [
+            "localhost"
+          ],
+          "port": "4567",
+          "path": [
+            "accounts",
+            "transfer"
+          ]
+        },
+        "description": "Transfer funds from one account to another by providing ID of source account ID, destination account ID and required amount."
+      },
+      "response": []
+    }
+  ]
+}
