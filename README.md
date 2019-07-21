@@ -1,5 +1,5 @@
+
 # Revolut Technical Task
-[![Build Status](https://travis-ci.com/Bartosz-D3V/revolut-technical-challenge.svg?token=tqZyPRhzSnop7iN2Y7Ug&branch=master)](https://travis-ci.com/Bartosz-D3V/revolut-technical-challenge)
 
 This application has been written to resolve a recruitment task for a Backend Developer position at Revolut.
 
@@ -35,11 +35,11 @@ After starting the application, please make a POST request to the following URL:
     localhost:4567/accounts
 Example body:
 
-> {
-	  "owner": "owner name",
-	  
-	  "amount": 100
-  }
+> { 	
+> "owner": "owner name", 	
+> 
+>  "amount": 100 
+>  }
 
 ## Listing available accounts
 In order to list all available accounts please make a GET request to the following URL:
@@ -52,13 +52,14 @@ In order to transfer money from one account to another please make a PUT request
      localhost:4567/accounts/transfer
 Example body:
 
-> {
-	"sourceAccountId": 1,
-	
-	"destAccountId": 2,
-	
-	"amount": 50
-}
+> { 	
+> "sourceAccountId": 1, 
+> 
+> "destAccountId": 2, 
+> 
+> "amount": 50  
+> }
+
 ## Running tests
 In order to run tests, please execute the following command:
 
