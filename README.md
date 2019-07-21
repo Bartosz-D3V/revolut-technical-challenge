@@ -37,6 +37,7 @@ Example body:
 
 > {
 	  "owner": "owner name",
+	  
 	  "amount": 100
   }
 
@@ -53,7 +54,9 @@ Example body:
 
 > {
 	"sourceAccountId": 1,
+	
 	"destAccountId": 2,
+	
 	"amount": 50
 }
 ## Running tests
