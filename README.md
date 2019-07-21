@@ -36,9 +36,11 @@ After starting the application, please make a POST request to the following URL:
 Example body:
 
 > { 	
+>
 > "owner": "owner name", 	
 > 
 >  "amount": 100 
+>  
 >  }
 
 ## Listing available accounts
@@ -53,11 +55,13 @@ In order to transfer money from one account to another please make a PUT request
 Example body:
 
 > { 	
+>
 > "sourceAccountId": 1, 
 > 
 > "destAccountId": 2, 
 > 
 > "amount": 50  
+> 
 > }
 
 ## Running tests
