@@ -5,8 +5,8 @@ import com.j256.ormlite.misc.TransactionManager;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.revolut.technicalchallenge.account.domain.Account;
+import com.revolut.technicalchallenge.account.exceptions.AccountNotFoundException;
 
-import javax.security.auth.login.AccountNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;

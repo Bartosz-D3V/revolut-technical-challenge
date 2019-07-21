@@ -2,13 +2,13 @@ package com.revolut.technicalchallenge.account.service;
 
 import com.revolut.technicalchallenge.account.dao.AccountDAO;
 import com.revolut.technicalchallenge.account.domain.TransferDetails;
+import com.revolut.technicalchallenge.account.exceptions.AccountNotFoundException;
 import com.revolut.technicalchallenge.account.exceptions.InsufficientAmountException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import javax.security.auth.login.AccountNotFoundException;
 import java.math.BigDecimal;
 
 import static com.revolut.technicalchallenge.account.AccountsProvider.ACCOUNT_1;
@@ -37,6 +37,21 @@ public class AccountServiceTest {
 
     accountService.transfer(transferDetails);
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void transferShouldThrowExceptionIfAmountIsNegative() throws AccountNotFoundException, InsufficientAmountException {
+    TransferDetails transferDetails = new TransferDetails(1, 2, BigDecimal.valueOf(-300));
+
+    accountService.transfer(transferDetails);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void transferShouldThrowExceptionIfAmountIsZero() throws AccountNotFoundException, InsufficientAmountException {
+    TransferDetails transferDetails = new TransferDetails(1, 2, BigDecimal.ZERO);
+
+    accountService.transfer(transferDetails);
+  }
+
 
   @Test
   public void transferShouldUpdateAccountWithUpdatedBalance() throws AccountNotFoundException, InsufficientAmountException {

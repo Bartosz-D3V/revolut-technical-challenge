@@ -4,10 +4,9 @@ import com.google.gson.Gson;
 import com.google.inject.Inject;
 import com.revolut.technicalchallenge.account.domain.Account;
 import com.revolut.technicalchallenge.account.domain.TransferDetails;
+import com.revolut.technicalchallenge.account.exceptions.AccountNotFoundException;
 import com.revolut.technicalchallenge.account.exceptions.InsufficientAmountException;
 import com.revolut.technicalchallenge.account.service.AccountService;
-
-import javax.security.auth.login.AccountNotFoundException;
 
 import static spark.Spark.before;
 import static spark.Spark.exception;
@@ -30,6 +29,10 @@ public class AccountController {
   public void configureRoutes() {
     before((request, response) -> response.type("application/json"));
     exception(InsufficientAmountException.class, (exception, request, response) -> {
+      response.status(500);
+      response.body(gson.toJson(exception));
+    });
+    exception(IllegalArgumentException.class, (exception, request, response) -> {
       response.status(500);
       response.body(gson.toJson(exception));
     });
