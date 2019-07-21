@@ -1,5 +1,6 @@
 
 # Revolut Technical Task
+[![Build Status](https://travis-ci.com/Bartosz-D3V/revolut-technical-challenge.svg?token=tqZyPRhzSnop7iN2Y7Ug&branch=master)](https://travis-ci.com/Bartosz-D3V/revolut-technical-challenge)
 
 This application has been written to resolve a recruitment task for a Backend Developer position at Revolut.
 
