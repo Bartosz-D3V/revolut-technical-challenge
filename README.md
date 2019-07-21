@@ -65,6 +65,11 @@ Example body:
 > 
 > }
 
+## Postman
+All available REST endpoints have been saved & exported as a Postman collection that is available in /postman directory.
+
+It can be imported and used to test the application.
+
 ## Running tests
 In order to run tests, please execute the following command:
 
@@ -75,6 +80,7 @@ In order to run tests, please execute the following command:
  1. Java 11
  2. Spark
  3. ORMLite
- 4. Maven
- 5. JUnit
- 6. Mockito
+ 4. H2 (In-memory DB)
+ 5. Maven
+ 6. JUnit
+ 7. Mockito
