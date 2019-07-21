@@ -29,11 +29,21 @@ public class AccountController {
 
   public void configureRoutes() {
     before((request, response) -> response.type("application/json"));
-    exception(InsufficientAmountException.class, (exception, request, response) -> response.body(gson.toJson(exception)));
-    exception(AccountNotFoundException.class, (exception, request, response) -> response.body(gson.toJson(exception)));
+    exception(InsufficientAmountException.class, (exception, request, response) -> {
+      response.status(500);
+      response.body(gson.toJson(exception));
+    });
+    exception(AccountNotFoundException.class, (exception, request, response) -> {
+      response.status(404);
+      response.body(gson.toJson(exception));
+    });
     path("/accounts", () -> {
       get("", (request, response) -> accountService.getAccounts(), gson::toJson);
-      post("", (request, response) -> accountService.createAccount(gson.fromJson(request.body(), Account.class)), gson::toJson);
+      post("", (request, response) -> {
+        Account account = accountService.createAccount(gson.fromJson(request.body(), Account.class));
+        response.status(201);
+        return gson.toJson(account);
+      });
       put("/transfer", (request, response) -> accountService.transfer(gson.fromJson(request.body(), TransferDetails.class)), gson::toJson);
     });
   }
