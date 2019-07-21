@@ -1,8 +1,8 @@
 package com.revolut.technicalchallenge.account.dao;
 
 import com.revolut.technicalchallenge.account.domain.Account;
+import com.revolut.technicalchallenge.account.exceptions.AccountNotFoundException;
 
-import javax.security.auth.login.AccountNotFoundException;
 import java.util.Collection;
 
 public interface AccountDAO {

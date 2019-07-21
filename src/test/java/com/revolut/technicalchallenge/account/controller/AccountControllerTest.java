@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.revolut.technicalchallenge.account.domain.Account;
 import com.revolut.technicalchallenge.account.domain.TransferDetails;
+import com.revolut.technicalchallenge.account.exceptions.AccountNotFoundException;
 import com.revolut.technicalchallenge.account.exceptions.InsufficientAmountException;
 import com.revolut.technicalchallenge.account.service.AccountService;
 import org.junit.ClassRule;
@@ -17,7 +18,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import spark.servlet.SparkApplication;
 
-import javax.security.auth.login.AccountNotFoundException;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -109,5 +109,17 @@ public class AccountControllerTest {
 
     assertEquals(404, httpResponse.code());
     assertEquals("Account not found.", exception.getMessage());
+  }
+
+  @Test
+  public void controllerShouldHandleIllegalArgumentException() throws HttpClientException, InsufficientAmountException, AccountNotFoundException {
+    doThrow(new IllegalArgumentException("Amount cannot be negative")).when(accountService).transfer(TRANSFER_DETAILS);
+
+    PutMethod request = testServer.put("/accounts/transfer", GSON.toJson(TRANSFER_DETAILS), false);
+    HttpResponse httpResponse = testServer.execute(request);
+    AccountNotFoundException exception = GSON.fromJson(new String(httpResponse.body()), AccountNotFoundException.class);
+
+    assertEquals(500, httpResponse.code());
+    assertEquals("Amount cannot be negative", exception.getMessage());
   }
 }

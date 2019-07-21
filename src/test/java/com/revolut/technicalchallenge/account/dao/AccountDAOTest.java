@@ -3,11 +3,11 @@ package com.revolut.technicalchallenge.account.dao;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.revolut.technicalchallenge.account.domain.Account;
+import com.revolut.technicalchallenge.account.exceptions.AccountNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 
-import javax.security.auth.login.AccountNotFoundException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
